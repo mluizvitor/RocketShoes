@@ -115,7 +115,7 @@ export const Total = styled.div`
 export const EmptyCart = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
   align-items: center;
   margin: 3rem 0;
   opacity: 0.6;

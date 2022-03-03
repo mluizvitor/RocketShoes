@@ -51,7 +51,7 @@ const Cart = (): JSX.Element => {
       {cartFormatted.length === 0 ? (
         <EmptyCart>
           <MdOutlineInfo size={48} />
-          <h1>Seu carrinho está vazio</h1>
+          <h2>Seu carrinho está vazio</h2>
         </EmptyCart>
       ) : (
         <>
