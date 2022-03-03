@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { darken } from 'polished';
+import styled from "styled-components";
+import { darken } from "polished";
 
 export const ProductList = styled.ul`
   display: grid;
@@ -45,7 +45,7 @@ export const ProductList = styled.ul`
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.06, '#7159c1')};
+        background: ${darken(0.06, "#7159c1")};
       }
 
       div {
@@ -65,5 +65,19 @@ export const ProductList = styled.ul`
         font-weight: bold;
       }
     }
+  }
+`;
+
+export const EmptyHome = styled.div`
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: calc(3rem + 30px) 0;
+  border-radius: 4px;
+
+  h2 {
+    opacity: 0.6;
   }
 `;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { MdAddShoppingCart } from "react-icons/md";
+import { MdAddShoppingCart, MdOutlineWarningAmber } from "react-icons/md";
 
-import { ProductList } from "./styles";
+import { EmptyHome, ProductList } from "./styles";
 import { api } from "../../services/api";
 import { formatPrice } from "../../util/format";
 import { useCart } from "../../hooks/useCart";
@@ -51,27 +51,36 @@ const Home = (): JSX.Element => {
   }
 
   return (
-    <ProductList>
-      {products.map((product) => (
-        <li key={product.id}>
-          <img src={product.image} alt={product.title} />
-          <strong>{product.title}</strong>
-          <span>{product.priceFormatted}</span>
-          <button
-            type="button"
-            data-testid="add-product-button"
-            onClick={() => handleAddProduct(product.id)}
-          >
-            <div data-testid="cart-product-quantity">
-              <MdAddShoppingCart size={16} color="#FFF" />
-              {cartItemsAmount[product.id] || 0}
-            </div>
+    <>
+      {products.length === 0 ? (
+        <EmptyHome>
+          <MdOutlineWarningAmber size={48} color={"#ea6280"} />
+          <h2>Não foi possível carregar produtos</h2>
+        </EmptyHome>
+      ) : (
+        <ProductList>
+          {products.map((product) => (
+            <li key={product.id}>
+              <img src={product.image} alt={product.title} />
+              <strong>{product.title}</strong>
+              <span>{product.priceFormatted}</span>
+              <button
+                type="button"
+                data-testid="add-product-button"
+                onClick={() => handleAddProduct(product.id)}
+              >
+                <div data-testid="cart-product-quantity">
+                  <MdAddShoppingCart size={16} color="#FFF" />
+                  {cartItemsAmount[product.id] || 0}
+                </div>
 
-            <span>ADICIONAR AO CARRINHO</span>
-          </button>
-        </li>
-      ))}
-    </ProductList>
+                <span>ADICIONAR AO CARRINHO</span>
+              </button>
+            </li>
+          ))}
+        </ProductList>
+      )}
+    </>
   );
 };
 
