@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { MdAddShoppingCart, MdOutlineWarningAmber } from "react-icons/md";
+import {
+  MdAddShoppingCart,
+  MdOutlineWarningAmber,
+  MdRefresh,
+} from "react-icons/md";
 
-import { EmptyHome, ProductList } from "./styles";
+import { EmptyHome, ProductList, Button } from "./styles";
 import { api } from "../../services/api";
 import { formatPrice } from "../../util/format";
 import { useCart } from "../../hooks/useCart";
@@ -56,6 +60,12 @@ const Home = (): JSX.Element => {
         <EmptyHome>
           <MdOutlineWarningAmber size={48} color={"#ea6280"} />
           <h2>Não foi possível carregar produtos</h2>
+          <Button type="button" onClick={() => document.location.reload()}>
+            <div>
+              <MdRefresh size={16} color={"#fff"}></MdRefresh>
+            </div>
+            <span>ATUALIZAR PÁGINA</span>
+          </Button>
         </EmptyHome>
       ) : (
         <ProductList>
@@ -64,7 +74,7 @@ const Home = (): JSX.Element => {
               <img src={product.image} alt={product.title} />
               <strong>{product.title}</strong>
               <span>{product.priceFormatted}</span>
-              <button
+              <Button
                 type="button"
                 data-testid="add-product-button"
                 onClick={() => handleAddProduct(product.id)}
@@ -75,7 +85,7 @@ const Home = (): JSX.Element => {
                 </div>
 
                 <span>ADICIONAR AO CARRINHO</span>
-              </button>
+              </Button>
             </li>
           ))}
         </ProductList>
